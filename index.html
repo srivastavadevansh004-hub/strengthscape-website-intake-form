@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strengthscape Website Query Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-background"></div>
+    <main class="form-container">
+        <div id="formWrapper">
+            <header class="form-header">
+                <h1>Register Interest</h1>
+                <p>Tell us what you are looking for. We’ll guide you to the right program, certification, assessment, or workshop.</p>
+            </header>
+            
+            <form id="intakeForm" class="intake-form" novalidate>
+                <!-- Honeypot -->
+                <div class="visually-hidden" aria-hidden="true">
+                    <label for="company_website_confirm">Please leave this field blank</label>
+                    <input type="text" id="company_website_confirm" name="company_website_confirm" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="fullName">Full Name <span class="required">*</span></label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="workEmail">Work Email <span class="required">*</span></label>
+                        <input type="email" id="workEmail" name="workEmail" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$">
+                        <span class="error-message" id="emailError">Please enter a valid work email address.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone / WhatsApp <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="organization">Organization <span class="required">*</span></label>
+                        <input type="text" id="organization" name="organization" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="designation">Designation</label>
+                        <input type="text" id="designation" name="designation">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City / Location</label>
+                        <input type="text" id="city" name="city">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="cluster">Cluster <span class="required">*</span></label>
+                        <select id="cluster" name="cluster" required>
+                            <option value="" disabled selected>Select a Cluster...</option>
+                            <option value="DiSC, Assessments & Certification">DiSC, Assessments & Certification</option>
+                            <option value="Leadership & Manager Development">Leadership & Manager Development</option>
+                            <option value="Teams, Culture & Change">Teams, Culture & Change</option>
+                            <option value="Communication, Influence & Executive Presence">Communication, Influence & Executive Presence</option>
+                            <option value="Sales & Customer Service">Sales & Customer Service</option>
+                            <option value="HR, L&D & Talent Capability">HR, L&D & Talent Capability</option>
+                            <option value="Strategy, Business Alignment & Offsites">Strategy, Business Alignment & Offsites</option>
+                            <option value="AI, Innovation & Future Skills">AI, Innovation & Future Skills</option>
+                            <option value="Technical, Digital & Functional Training">Technical, Digital & Functional Training</option>
+                            <option value="Custom Program / Not Sure">Custom Program / Not Sure</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="requirementProgram">Requirement / Program <span class="required">*</span></label>
+                        <select id="requirementProgram" name="requirementProgram" required disabled>
+                            <option value="" disabled selected>Please select a Cluster first</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="participants">Approx. number of participants</label>
+                        <input type="number" id="participants" name="participants" min="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="timeline">Expected timeline</label>
+                        <input type="text" id="timeline" name="timeline" placeholder="e.g., Q3 2024, Next month">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="deliveryMode">Preferred delivery mode</label>
+                        <select id="deliveryMode" name="deliveryMode">
+                            <option value="" disabled selected>Select preferred mode...</option>
+                            <option value="Face-to-face">Face-to-face</option>
+                            <option value="Virtual">Virtual</option>
+                            <option value="Hybrid">Hybrid</option>
+                            <option value="Not sure">Not sure</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="briefRequirement">Brief Requirement <span class="required">*</span></label>
+                        <textarea id="briefRequirement" name="briefRequirement" rows="4" placeholder="Tell us briefly about the audience, objective, number of participants, timeline, delivery mode, and any specific challenge." required></textarea>
+                        <span class="helper-text">Example: Need DiSC Trainer Certification for 8 internal facilitators in June, preferably virtual.</span>
+                    </div>
+                </div>
+                
+                <div class="form-group consent-group full-width">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="consent" name="consent">
+                        <span class="checkmark"></span>
+                        <span class="consent-text">I consent to Strengthscape storing and processing my data to respond to my query.</span>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="submitBtn" class="btn-primary">
+                        <span class="btn-text">Submit Request</span>
+                        <span class="btn-loader hidden"></span>
+                    </button>
+                </div>
+                
+                <div id="formStatus" class="form-status hidden"></div>
+            </form>
+        </div>
+
+        <div id="successCard" class="success-card hidden">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <h2>Success</h2>
+            <p>Thank you. We have received your request. Our team will review the details and get back to you shortly.</p>
+            <button id="resetFormBtn" class="btn-secondary">Submit another request</button>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
